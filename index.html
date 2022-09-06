@@ -5,8 +5,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity WebGL Player | Jiaozi</title>
   </head>
+
+  <!-- body 中调用 OnResize方法, 这样在PC端使用浏览器查看时, 当用户改变浏览器尺寸时, 屏幕自适应 -->
+  <body onResize="ChangeCanvas()">
+
   <body style="text-align: center">
-    <canvas id="unity-canvas" width=540 height=960 style="width: 540px; height: 960px; background: #231F20"></canvas>
+
+    <!-- 在这里设置游戏的 整个界面是100%填充设备 -->
+    <canvas id="unity-canvas" style="width:100%; height:100%; background: #231F20"></canvas>
     <script src="Build/Jiaozi.loader.js"></script>
     <script>
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
@@ -29,5 +35,16 @@
         // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
       });
     </script>
+
+    <script type="text/javascript">
+      function ChangeCanvas()
+      {
+         document.getElementById("gameContainer").style.width = window.innerWidth + "px";
+         document.getElementById("gameContainer").style.height = window.innerHeight + "px";
+         document.getElementById("#canvas").style.width = window.innerWidth + "px";
+         document.getElementById("#canvas").style.height = window.innerHeight + "px";
+      }
+    </script>
+
   </body>
 </html>
